@@ -1,8 +1,9 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
+var Nav = require("./views/nav");
 
 ReactDOM.render(
-		<div>hello nephele workbench</div>,
+		<Nav/>,
 		document.getElementById("app")
 		);

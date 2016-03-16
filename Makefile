@@ -12,6 +12,7 @@ all: $(APPJS)
 
 $(APPJS): $(SRCJS) $(MOD)
 	$(BROWSERIFY) -t [ babelify --presets [ react ] ] $(SRCJS) -o $(APPJS)
+.PHONY: $(APPJS)
 
 $(MOD): package.json
 	npm install
