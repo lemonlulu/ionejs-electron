@@ -12,13 +12,16 @@ var Popup = React.createClass({
 	getInitialState: function() {
 		return { active: false };
 	},
+	handleClick: function(event) {
+		this.setState({ active: !this.state.active });
+	},
 	render: function() {
 		var list = null;
 		if (this.state.active)
 		list = this.props.actions.map(function(a){
 			return (<div key={a}>{a}</div>);
 		});
-		return (<div>
+		return (<div onClick={this.handleClick}>
 			{this.props.title}
 			{list}
 			</div>);
