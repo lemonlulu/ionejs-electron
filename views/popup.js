@@ -15,13 +15,21 @@ var Popup = React.createClass({
 	handleClick: function(event) {
 		this.setState({ active: !this.state.active });
 	},
+	shouldComponentUpdate() {
+		return true;
+	},
 	render: function() {
-		var list = null;
+		var list;
 		if (this.state.active)
-		list = this.props.actions.map(function(a){
-			return (<div key={a}>{a}</div>);
+		list = this.props.actions.map(function(a, i){
+			var style = {
+				position: "absolute",
+				left: 0,
+				top: i*12 + 20
+			};
+			return (<div key={a} style={style}>{a}</div>);
 		});
-		return (<div onClick={this.handleClick}>
+		return (<div style={{position:"relative"}} onClick={this.handleClick}>
 			{this.props.title}
 			{list}
 			</div>);
