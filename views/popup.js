@@ -10,27 +10,43 @@ var Popup = React.createClass({
 		};
 	},
 	getInitialState: function() {
-		return { active: false };
+		return { active: false, stretch: 0 };
 	},
 	handleClick: function(event) {
-		this.setState({ active: !this.state.active });
+		this.setState({ active: !this.state.active});
+		setTimeout(this.tick, 1000/60);
+	},
+	tick: function() {
+		var stretch;
+		var state = this.state;
+		if (state.active) {
+			stretch = state.stretch/3 + 2/3;
+			if(state.stretch < 0.95)
+				setTimeout(this.tick, 1000/60);
+		} else {
+			stretch = state.stretch*2/3;
+			if(state.stretch > 0.05)
+				setTimeout(this.tick, 1000/60);
+		}
+		this.setState({stretch: stretch});
 	},
 	shouldComponentUpdate() {
 		return true;
 	},
 	render: function() {
 		var list;
-		if (this.state.active)
-		list = this.props.actions.map(function(a, i){
+		var props = this.props, state = this.state;
+		if (state.active)
+		list = props.actions.map(function(a, i){
 			var style = {
 				position: "absolute",
 				left: 0,
-				top: i*12 + 20
+				top: i * 20 * state.stretch + 20
 			};
 			return (<div key={a} style={style}>{a}</div>);
 		});
 		return (<div style={{position:"relative"}} onClick={this.handleClick}>
-			{this.props.title}
+			{props.title}
 			{list}
 			</div>);
 	}
