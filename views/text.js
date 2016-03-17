@@ -8,7 +8,8 @@ var Text = React.createClass({
     			size: 20,
     			align: "left",
     			normalColor: "#000",
-    			highlightColor: "#777"
+    			highlightColor: "#777",
+			fontFamily: '' 
 		};
 	},
 	propTypes: {
@@ -49,7 +50,8 @@ var Text = React.createClass({
 		var style = {
 			textAlign: props.align,
 			color: state.active ? props.highlightColor : props.normalColor,
-			fontSize: props.size * (1+state.alpha/20)
+			fontSize: props.size * (1+state.alpha/20),
+			fontFamily: props.fontFamily
 		};
 		return (<div style={style} onMouseOver={this.handleMouseIn} onMouseOut={this.handleMouseOut}>{this.props.content}</div>);
 	}
