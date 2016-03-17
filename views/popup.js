@@ -1,53 +1,51 @@
 var React = require("react");
+var _ = require("underscore");
+
+var Text =require("./text")
 
 var Popup = React.createClass({
 	propTypes: {
 		title: React.PropTypes.string
 	},
-	getDefaultProps: function() {
-		return {
-			title: "popup list"
-		};
-	},
 	getInitialState: function() {
-		return { active: false, stretch: 0 };
+		return { active: false, alpha: 0,
+			background: { backgroundColor: '#fff'}};
 	},
 	handleClick: function(event) {
 		this.setState({ active: !this.state.active});
 		setTimeout(this.tick, 1000/60);
 	},
 	tick: function() {
-		var stretch;
+		var alpha;
 		var state = this.state;
 		if (state.active) {
-			stretch = state.stretch/3 + 2/3;
-			if(state.stretch < 0.95)
+			alpha = state.alpha*3/4 + 1/4;
+			if(state.alpha < 0.95)
 				setTimeout(this.tick, 1000/60);
 		} else {
-			stretch = state.stretch*2/3;
-			if(state.stretch > 0.05)
+			alpha = state.alpha*3/4;
+			if(state.alpha > 0.05)
 				setTimeout(this.tick, 1000/60);
 		}
-		this.setState({stretch: stretch});
-	},
-	shouldComponentUpdate() {
-		return true;
+		this.setState({alpha: alpha});
 	},
 	render: function() {
 		var list;
 		var props = this.props, state = this.state;
-		if (state.active)
+		if (state.alpha > 0.1)
 		list = props.actions.map(function(a, i){
-			var style = {
-				position: "absolute",
-				left: 0,
-				top: i * 20 * state.stretch + 20
-			};
-			return (<div key={a} style={style}>{a}</div>);
+			var style = { top: i * 30 * state.alpha + 30, opacity: state.alpha};
+			style = _.defaults( style, {position: "absolute",left: 0});
+			return (<div key={a} style={style}>
+				<Text content={a} align="center" ></Text>
+				</div>);
 		});
-		return (<div style={{position:"relative"}} onClick={this.handleClick}>
-			{props.title}
-			{list}
+		var style = _.defaults( state.background, 
+			{marginTop:'10', position:"absolute", fontSize:'20px', cursor:'pointer'});
+		return (<div style={style}
+				onClick={this.handleClick}>
+				<Text content={props.title} align="center" ></Text>
+				{list}
 			</div>);
 	}
 });

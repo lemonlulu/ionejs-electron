@@ -1,29 +1,31 @@
 var React = require("react");
+var ReactDOM = require("react-dom");
 
 var Popup = require("./popup");
 
 var layout = [
-	{ title: "file", actions: ["open", "close"]},
-	{ title: "shape", actions: ["crop", "resize"]},
-	{ title: "effect", actions: ["watermark", "digimark"]}];
+	{ title: "File", actions: ["Open", "Close"]},
+	{ title: "Shape", actions: ["Crop", "Resize"]},
+	{ title: "Effect", actions: ["Watermark", "Digimark", "About"]}];
 
 var Nav = React.createClass({
-	propTypes: {
-		text: React.PropTypes.number
-	},
-	getInitialState: function() {
-		return {text: this.props.text};
-	},
 	render: function() {
-		var nav = (<div></div>);
-		return (<div>
-			{
-				layout.map(function(p) {
-					return <Popup key={p.title} 
-					title={p.title} actions={p.actions}></Popup>;
-				})
-			}
-			</div>);
+		var menus = layout.map(function(p, i) {
+			var popuplist = (<Popup title={p.title} actions={p.actions}></Popup>);
+			var style = { left: i * 80 + 100};
+			style = _.defaults( style, {'position': 'absolute'});
+			return (
+				<div style={style}  key={p.title}>
+				{popuplist}
+				</div>
+				);
+		});
+
+		return (
+			<div style={{position:"relative"}}>
+			{menus}
+			</div>
+			);
 	}
 });
 
