@@ -7,6 +7,7 @@ var _ = require("underscore");
 var layout = [
 	{ title: "File", actions: ["Open", "Close"]},
 	{ title: "Shape", actions: ["Crop", "Resize"]},
+	{ title: "Color", actions: ["Red", "Green", "Blue"]},
 	{ title: "Effect", actions: ["Watermark", "Digimark", "About"]}];
 
 var Nav = React.createClass({
@@ -16,10 +17,12 @@ var Nav = React.createClass({
 	handleClick: function(event) {
 		var current = this.state.currentActivePopuplist;
 		var next = event.popuplist;
-		current && current.setActive(false);
-		next && next.setActive(true);
-		this.setState({currentActivePopuplist: next});
-		event.stopPropagation();
+		if (next != current) {
+			current && current.setActive(false);
+			next && next.setActive(true);
+			this.setState({currentActivePopuplist: next});
+			event.stopPropagation();
+		}
 	},
     	handleClose: function(event) {
 		var current = this.state.currentActivePopuplist;
