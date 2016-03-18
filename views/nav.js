@@ -41,20 +41,22 @@ var Nav = React.createClass({
 				);
 		});
 
-		if (!this.state.currentActivePopuplist) 
-			return (
-				<div>
+		var _nav = (
 				<div style={{position:"absolute", left: this.props.left, top: this.props.top}} onClick={this.handleClick}>
 				{menus}
 				</div>
+				);
+
+		if (!this.state.currentActivePopuplist) 
+			return (
+				<div>
+				{_nav}
 				</div>
 				);
 		else 
 			return (
 				<div style={{position:"fixed", width:"100%", height:"100%"}} onClick={this.handleClose}>
-				<div style={{position:"absolute", left: this.props.left, top: this.props.top}} onClick={this.handleClick}>
-				{menus}
-				</div>
+				{_nav}
 				</div>
 				);
 	}
