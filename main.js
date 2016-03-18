@@ -3,9 +3,21 @@ var ReactDOM = require("react-dom");
 
 var Nav = require("./views/nav");
 
-window._ = require("underscore");
+var App = React.createClass({
+	disableEvent: function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	},
+    	render: function() {
+		return (
+			<div style={{position:"fixed", width:"100%", height:"100%"}}>
+			<Nav/>
+			</div>);
+	}
+});
+
 
 ReactDOM.render(
-		<Nav/>,
+		<App></App>,
 		document.getElementById("app")
 		);

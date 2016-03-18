@@ -12,7 +12,10 @@ var Popup = React.createClass({
 			background: { backgroundColor: '#fff'}};
 	},
 	handleClick: function(event) {
-		this.setState({ active: !this.state.active});
+		event.popuplist = this;
+	},
+	setActive: function(active) {
+		this.setState({ active: active});
 		setTimeout(this.tick, 1000/60);
 	},
 	tick: function() {
@@ -32,9 +35,8 @@ var Popup = React.createClass({
 	render: function() {
 		var list;
 		var props = this.props, state = this.state;
-		if (state.alpha > 0.1)
 		list = props.actions.map(function(a, i){
-			var style = { top: i * 30 * state.alpha + 30, opacity: state.alpha};
+			var style = { top: i * 30 * state.alpha + 30, opacity: state.alpha, display:state.alpha > 0.1 ? "block": "none"};
 			style = _.defaults( style, {position: "absolute",left: 0});
 			return (<div key={a} style={style}>
 				<Text content={a} align="center" ></Text>
@@ -42,8 +44,7 @@ var Popup = React.createClass({
 		});
 		var style = _.defaults( state.background, 
 			{marginTop:'10', position:"absolute", fontSize:'20px', cursor:'pointer'});
-		return (<div style={style}
-				onClick={this.handleClick}>
+		return (<div style={style} onClickCapture={this.handleClick}>
 				<Text content={props.title} align="center" ></Text>
 				{list}
 			</div>);
