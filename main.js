@@ -11,7 +11,7 @@ var App = React.createClass({
     	render: function() {
 		return (
 			<div style={{position:"fixed", width:"100%", height:"100%"}}>
-			<Nav/>
+			<Nav left="280px" top="0px"/>
 			</div>);
 	}
 });

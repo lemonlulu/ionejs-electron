@@ -32,7 +32,7 @@ var Nav = React.createClass({
 	render: function() {
 		var menus = layout.map(function(p, i) {
 			var popuplist = (<Popup title={p.title} actions={p.actions}></Popup>);
-			var style = { left: i * 80 + 100};
+			var style = { left: i * 80 };
 			style = _.defaults( style, {'position': 'absolute'});
 			return (
 				<div style={style}  key={p.title}>
@@ -44,7 +44,7 @@ var Nav = React.createClass({
 		if (!this.state.currentActivePopuplist) 
 			return (
 				<div>
-				<div style={{position:"relative"}} onClick={this.handleClick}>
+				<div style={{position:"absolute", left: this.props.left, top: this.props.top}} onClick={this.handleClick}>
 				{menus}
 				</div>
 				</div>
@@ -52,7 +52,7 @@ var Nav = React.createClass({
 		else 
 			return (
 				<div style={{position:"fixed", width:"100%", height:"100%"}} onClick={this.handleClose}>
-				<div style={{position:"relative"}} onClick={this.handleClick}>
+				<div style={{position:"absolute", left: this.props.left, top: this.props.top}} onClick={this.handleClick}>
 				{menus}
 				</div>
 				</div>
