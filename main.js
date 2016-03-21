@@ -11,13 +11,19 @@ var App = React.createClass({
     	render: function() {
 		return (
 			<div style={{position:"fixed", width:"100%", height:"100%"}}>
-			<Nav left="280px" top="0px"/>
+				{this.props.children}
 			</div>);
 	}
 });
 
+var Action = require("./views/action");
+Action.on("*", function(){
+	console.log("File.Open");
+});
 
 ReactDOM.render(
-		<App></App>,
+		<App>
+		<Nav left="280px" top="0px"/>
+		</App>,
 		document.getElementById("app")
 		);

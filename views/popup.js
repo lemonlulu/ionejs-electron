@@ -1,7 +1,8 @@
 var React = require("react");
 var _ = require("underscore");
 
-var Text =require("./text")
+var Text =require("./text");
+var Action = require("./action");
 
 var Popup = React.createClass({
 	propTypes: {
@@ -38,8 +39,11 @@ var Popup = React.createClass({
 		list = props.actions.map(function(a, i){
 			var style = { top: i * 30 * state.alpha + 30, opacity: state.alpha, display:state.alpha > 0.1 ? "block": "none"};
 			style = _.defaults( style, {position: "absolute",left: 0});
+			var type = props.title+"."+a;
 			return (<div key={a} style={style}>
+				<Action type = {type}>
 				<Text content={a} align="center" ></Text>
+				</Action>
 				</div>);
 		});
 		var style = _.defaults( state.background, 
