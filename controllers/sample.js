@@ -12,12 +12,12 @@ var Controller = require("./controller");
 //To inherits base controller, here required util.
 var util = require("util");
 
-function SampleContoller() {
+function SampleController() {
 	//To apply inherits in js
 	Controller.call(this);
 	//Listen to the Action Event
 	//In js, most callback binds context.
-	Action.on("YourActionEvent", this.yourMethod.bind(this));
+	Action.on("Your Action Event", this.yourMethod.bind(this));
 }
 
 //To apply inherits in js
@@ -34,5 +34,6 @@ p.yourMethod = function() {
 }
 
 //Exports your code so that others can require.
-module.exports = FileController;
-module.exports.instance = new FileController()
+//Also, don't forget to register your controller in index.js for initialization.
+module.exports = SampleController;
+module.exports.instance = new SampleController()
