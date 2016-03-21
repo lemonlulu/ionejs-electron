@@ -1,7 +1,11 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
+
+//View
 var Nav = require("./views/nav");
+//Controllers
+var controllers = require("./controllers");
 
 var App = React.createClass({
 	disableEvent: function(event) {
@@ -14,11 +18,6 @@ var App = React.createClass({
 				{this.props.children}
 			</div>);
 	}
-});
-
-var Action = require("./views/action");
-Action.on("*", function(){
-	console.log("File.Open");
 });
 
 ReactDOM.render(

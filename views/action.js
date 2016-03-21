@@ -8,7 +8,6 @@ var eventEmitter = new EventEmitter();
 var Action = React.createClass({
 	handleClick: function() {
 		var type = this.props.type;
-		console.log("in emit", type);
 		eventEmitter.emit(type);
 	},
 	render: function() {
@@ -22,7 +21,5 @@ var Action = React.createClass({
 
 module.exports = Action;
 module.exports.on = function() {
-	console.log(eventEmitter);
-	console.log("in actions.js", arguments);
 	EventEmitter.prototype.on.apply(eventEmitter, arguments);
 };
