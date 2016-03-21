@@ -1,7 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var Popup = require("./popup");
+var Dropdown = require("./dropdown");
 var _ = require("underscore");
 
 var layout = [
@@ -12,31 +12,31 @@ var layout = [
 
 var Nav = React.createClass({
 	getInitialState: function() {
-		return {currentActivePopuplist: null};
+		return {currentActiveDropdownlist: null};
 	},
 	handleClick: function(event) {
-		var current = this.state.currentActivePopuplist;
-		var next = event.popuplist;
+		var current = this.state.currentActiveDropdownlist;
+		var next = event.dropdownlist;
 		if (next != current) {
 			current && current.setActive(false);
 			next && next.setActive(true);
-			this.setState({currentActivePopuplist: next});
+			this.setState({currentActiveDropdownlist: next});
 			event.stopPropagation();
 		}
 	},
     	handleClose: function(event) {
-		var current = this.state.currentActivePopuplist;
+		var current = this.state.currentActiveDropdownlist;
 		current && current.setActive(false);
-		this.setState({currentActivePopuplist: null});
+		this.setState({currentActiveDropdownlist: null});
 	},
 	render: function() {
 		var menus = layout.map(function(p, i) {
-			var popuplist = (<Popup title={p.title} actions={p.actions}></Popup>);
+			var dropdownlist = (<Dropdown title={p.title} actions={p.actions}></Dropdown>);
 			var style = { left: i * 80 };
 			style = _.defaults( style, {'position': 'absolute'});
 			return (
 				<div style={style}  key={p.title}>
-				{popuplist}
+				{dropdownlist}
 				</div>
 				);
 		});
@@ -47,7 +47,7 @@ var Nav = React.createClass({
 				</div>
 				);
 
-		if (!this.state.currentActivePopuplist) 
+		if (!this.state.currentActiveDropdownlist) 
 			return (
 				<div>
 				{_nav}

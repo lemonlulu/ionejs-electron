@@ -4,7 +4,7 @@ var _ = require("underscore");
 var Text =require("./text");
 var Action = require("./action");
 
-var Popup = React.createClass({
+var Dropdown = React.createClass({
 	propTypes: {
 		title: React.PropTypes.string
 	},
@@ -13,7 +13,7 @@ var Popup = React.createClass({
 			background: { backgroundColor: '#fff'}};
 	},
 	handleClick: function(event) {
-		event.popuplist = this;
+		event.dropdownlist = this;
 	},
 	setActive: function(active) {
 		this.setState({ active: active});
@@ -55,4 +55,4 @@ var Popup = React.createClass({
 	}
 });
 
-module.exports = Popup;
+module.exports = Dropdown;

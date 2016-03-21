@@ -16,7 +16,7 @@ util.inherits(FileController, Controller);
 var p = FileController.prototype;
 
 p.open = function() {
-
+	console.log("TODO ACTION: File.Open");
 }
 
 module.exports = FileController;
