@@ -3,12 +3,11 @@ var util = require("util");
 //Do check if relative controllers are init when interactions between controllers are needed.
 //var controllers = require("./");
 
-var Action = require("../views/action");
 var Controller = require("./controller");
 
 function FileController() {
 	Controller.call(this);
-	Action.on("File.Open", this.open.bind(this));
+	Actions.on("File.*", this.open.bind(this));
 }
 
 util.inherits(FileController, Controller);

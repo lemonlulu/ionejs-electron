@@ -16,6 +16,8 @@ var Action = React.createClass({
 });
 
 module.exports = Action;
-module.exports.on = function() {
-	EventEmitter.prototype.on.apply(eventEmitter, arguments);
+module.exports.actions = {
+	on : function() {
+		EventEmitter.prototype.on.apply(eventEmitter, arguments);
+	}
 };

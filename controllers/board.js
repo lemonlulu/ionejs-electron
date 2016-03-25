@@ -2,8 +2,7 @@
 //you how to write a controller interacting with models and views;
 
 //A controller listen to Action Event emitted by the view to cognize user intentions.
-//So, here you require ../view/action.
-var Action = require("../views/action");
+//So, here you need to be aware of global variable Actions.
 
 //A controller share similar behaviors implemented in controllers/controller.js.
 //So, here you require controller
@@ -17,7 +16,7 @@ function BoardController() {
 	Controller.call(this);
 	//Listen to the Action Event
 	//In js, most callback binds context.
-	Action.on("Your Action Event", this.yourMethod.bind(this));
+	Actions.on("Your Action Event", this.yourMethod.bind(this));
 }
 
 //To apply inherits in js
