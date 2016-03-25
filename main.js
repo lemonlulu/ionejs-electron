@@ -7,7 +7,7 @@ var Nav = require("./views/nav");
 //Board
 var Board = require("./views/board");
 //Controllers
-var controllers = require("./controllers");
+controllers = require("./controllers");
 
 var App = React.createClass({
 	disableEvent: function(event) {
@@ -25,7 +25,7 @@ var App = React.createClass({
 ReactDOM.render(
 		<App>
 		<Nav position="absolute" left="280px" top="0px"/>
-		<Board position="absolute" left="280px" top="150px"/>
+		<Board position="absolute" left="280px" top="150px" controller={controllers.board}/>
 		</App>,
 		document.getElementById("app")
 		);

@@ -5,7 +5,7 @@ var _ = require("underscore");
 
 var ionejs = require("ionejs");
 
-var stage = {
+var stageConfig = {
 	alias: "Stage",
 	options: {},
 	children: [{
@@ -20,8 +20,10 @@ var stage = {
 
 var Board = React.createClass({
 	componentDidMount: function() {
-		ionejs.instance.init(ionejs.create(stage), ReactDOM.findDOMNode(this))
+		var stage = ionejs.create(stageConfig);
+		ionejs.instance.init(stage, ReactDOM.findDOMNode(this))
 		ionejs.instance.run();
+		this.props.controller && this.props.controller.bind(stage);
 	},
 	render: function() {
 		var style = _.defaults({position: "absolute"}, this.props);
