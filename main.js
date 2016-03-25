@@ -4,6 +4,8 @@ var ReactDOM = require("react-dom");
 
 //View
 var Nav = require("./views/nav");
+//Board
+var Board = require("./views/board");
 //Controllers
 var controllers = require("./controllers");
 
@@ -22,7 +24,8 @@ var App = React.createClass({
 
 ReactDOM.render(
 		<App>
-		<Nav left="280px" top="0px"/>
+		<Nav position="absolute" left="280px" top="0px"/>
+		<Board position="absolute" left="280px" top="150px"/>
 		</App>,
 		document.getElementById("app")
 		);

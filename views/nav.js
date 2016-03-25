@@ -41,24 +41,21 @@ var Nav = React.createClass({
 				);
 		});
 
-		var _nav = (
-				<div style={{position:"absolute", left: this.props.left, top: this.props.top}} onClick={this.handleClick}>
-				{menus}
-				</div>
-				);
-
-		if (!this.state.currentActiveDropdownlist) 
-			return (
-				<div>
-				{_nav}
-				</div>
-				);
-		else 
-			return (
-				<div style={{position:"fixed", width:"100%", height:"100%"}} onClick={this.handleClose}>
-				{_nav}
-				</div>
-				);
+		var padStyle = {position:"inherit", width:"100%", height:"100%"};
+		var navStyle = _.clone(this.props);
+		var handleClose = function() {};
+		if (!!this.state.currentActiveDropdownlist)  {
+			handleClose = this.handleClose;
+			_.defaults(padStyle, {zIndex:"1"});
+			_.defaults(navStyle, {zIndex:"1"});
+		}
+		return (
+			<div style={padStyle} onClick={this.handleClose}>
+			<div style={navStyle} onClick={this.handleClick}>
+			{menus}
+			</div>
+			</div>
+			);
 	}
 });
 
