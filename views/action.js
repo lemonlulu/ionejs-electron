@@ -11,13 +11,9 @@ var Action = React.createClass({
 		eventEmitter.emit(type);
 	},
 	render: function() {
-		return (
-			<div onClick={this.handleClick}>{this.props.children}</div>
-			);
+		return <div onClick={this.handleClick}>{this.props.children}</div>;
 	}
 });
-
-
 
 module.exports = Action;
 module.exports.on = function() {

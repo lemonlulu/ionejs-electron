@@ -1,5 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
+var _ = require("underscore");
+
 
 var ionejs = require("ionejs");
 
@@ -22,11 +24,8 @@ var Board = React.createClass({
 		ionejs.instance.run();
 	},
 	render: function() {
-		var style = this.props;
-		style["position"] = "absolute";
-		return (
-			<canvas style={style}/>
-			);
+		var style = _.defaults({position: "absolute"}, this.props);
+		return <canvas style={style}/>;
 	}
 });
 

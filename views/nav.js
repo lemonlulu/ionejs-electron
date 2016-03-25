@@ -11,6 +11,9 @@ var layout = [
 	{ title: "Effect", actions: ["Watermark", "Digimark", "About"]}];
 
 var Nav = React.createClass({
+    	componentDidMount: function() {
+		this.props.controller && this.props.controller.bind(this);
+	},
 	getInitialState: function() {
 		return {currentActiveDropdownlist: null};
 	},
