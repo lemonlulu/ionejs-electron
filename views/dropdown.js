@@ -4,34 +4,15 @@ var _ = require("underscore");
 var Text =require("./text");
 var Action = require("./action");
 
+var Gradual = require("./mixins/gradual");
+
 var Dropdown = React.createClass({
+	mixins: [Gradual(3/4, 60, {background: { backgroundColor: '#fff'}})],
 	propTypes: {
 		title: React.PropTypes.string
 	},
-	getInitialState: function() {
-		return { active: false, alpha: 0,
-			background: { backgroundColor: '#fff'}};
-	},
 	handleClick: function(event) {
 		event.dropdownlist = this;
-	},
-	setActive: function(active) {
-		this.setState({ active: active});
-		setTimeout(this.tick, 1000/60);
-	},
-	tick: function() {
-		var alpha;
-		var state = this.state;
-		if (state.active) {
-			alpha = state.alpha*3/4 + 1/4;
-			if(state.alpha < 0.95)
-				setTimeout(this.tick, 1000/60);
-		} else {
-			alpha = state.alpha*3/4;
-			if(state.alpha > 0.05)
-				setTimeout(this.tick, 1000/60);
-		}
-		this.setState({alpha: alpha});
 	},
 	render: function() {
 		var list;

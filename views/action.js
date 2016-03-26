@@ -12,7 +12,7 @@ var Action = React.createClass({
 		eventEmitter.emit(type, data);
 	},
 	render: function() {
-		return <div onClick={this.handleClick}>{this.props.children}</div>;
+		return <div style={{cursor:'pointer'}} onClick={this.handleClick}>{this.props.children}</div>;
 	}
 });
 
