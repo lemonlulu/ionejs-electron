@@ -7,7 +7,7 @@ var Controller = require("./controller");
 
 function FileController() {
 	Controller.call(this);
-	Actions.on("File.*", this.open.bind(this));
+	Actions.on("Submit.OpenFile", this.open.bind(this));
 }
 
 util.inherits(FileController, Controller);
@@ -15,7 +15,7 @@ util.inherits(FileController, Controller);
 var p = FileController.prototype;
 
 p.open = function() {
-	console.log("TODO ACTION: File.Open");
+	console.log("TODO ACTION: Submit.OpenFile", arguments);
 }
 
 module.exports = FileController;

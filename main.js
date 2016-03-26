@@ -29,7 +29,7 @@ var App = React.createClass({
 
 ReactDOM.render(
 		<App>
-		<Popups.OpenFile position="fixed" left="30%" top="30%" zIndex="10"/>
+		<Popups.OpenFile position="fixed" left="30%" top="30%" zIndex="10" background="#FFF"/>
 		<Nav position="absolute" left="280px" top="0px"/>
 		<Board position="absolute" left="280px" top="150px" controller={Controllers.board}/>
 		</App>,
