@@ -8,7 +8,8 @@ var eventEmitter = new EventEmitter();
 var Action = React.createClass({
 	handleClick: function() {
 		var type = this.props.type;
-		eventEmitter.emit(type);
+		var data = this.props.data;
+		eventEmitter.emit(type, data);
 	},
 	render: function() {
 		return <div onClick={this.handleClick}>{this.props.children}</div>;
