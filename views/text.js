@@ -46,10 +46,9 @@ var Text = React.createClass({
 		setTimeout(this.tick, 1000/60);
 	},
 	render: function() {
-		var props = this.props;
+		var props = _.clone(this.props);
 		var state = this.state;
 		var style = {
-			textAlign: props.align,
 			color: state.active ? props.highlightColor : props.normalColor,
 			fontSize: props.size * (1+state.alpha/20),
 		};
