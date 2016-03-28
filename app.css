@@ -1,0 +1,2 @@
+/* This css file aims to disable browser default pseudo classes*/
+*:focus {outline:none;}

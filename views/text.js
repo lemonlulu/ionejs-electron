@@ -1,5 +1,6 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
+var _ = require("underscore");
 
 var Text = React.createClass({
 	getDefaultProps: function() {
@@ -51,8 +52,9 @@ var Text = React.createClass({
 			textAlign: props.align,
 			color: state.active ? props.highlightColor : props.normalColor,
 			fontSize: props.size * (1+state.alpha/20),
-			fontFamily: props.fontFamily
 		};
+		var others = _.omit(props, "align", "highlightColor", "normalColor", "size", "content");
+		style = _.defaults(style, others);
 		return (<div style={style} onMouseOver={this.handleMouseIn} onMouseOut={this.handleMouseOut}>{this.props.content}</div>);
 	}
 });

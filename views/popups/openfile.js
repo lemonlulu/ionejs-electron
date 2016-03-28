@@ -7,41 +7,59 @@ var Action = require("../action")
 var Gradual = require("../mixins/gradual");
 
 var OpenFile = React.createClass({
+	getInitialState: function() {
+		return {
+			focus: false
+		};
+	},
 	componentDidMount: function() {
 		var me = this;
+		console.log(this);
+		window.a = this;
 		Actions.on("File.Open", function() {
 			me.setActive(true);
 		});
 		Actions.on("Submit.OpenFile", function() {
 	        	me.setState({value: ""});
-			me.setActive(false);
 		});
 
 	},
 	handleChange: function(event) {
 	        this.setState({value: event.target.value});
 	},
-    	handleClick: function(event) {
-		event.stopPropagation();
+	handleInputClick: function(event) {
+		console.log("1");
+		event.preventDefault();
 	},
-    	handleClose: function(event) {
-		this.setActive(false);
+    	handleClick: function(event) {
+		if (this.state.focus) {
+	        	this.setState({value: ""});
+			this.setActive(false);
+		}
+		else 
+			ReactDOM.findDOMNode(this.refs.textInput).focus();
+		this.setState({focus: !this.state.focus});
+		event.stopPropagation();
 	},
 	mixins: [Gradual(7/8, 60, {value: ""})],
 	render: function() {
 		var state = this.state;
-		var popupStyle = _.pick(this.props, "position", "top", "left");
-		var padStyle = _.omit(this.props, "position", "top", "left");
-		padStyle = _.defaults(padStyle, {opacity: state.alpha, display:state.alpha > 0.1 ? "block": "none"});
-		padStyle = _.defaults(padStyle, {position:"inherit", width:"100%", height:"100%"});
+		var padStyle = _.clone(this.props);
+		padStyle = _.defaults(padStyle, {
+			background: "#FFF", 
+			opacity: state.alpha, 
+			display:state.alpha > 0.1 ? "block": "none", 
+			position:"inherit", 
+			width:"100%", 
+			height:"100%"});
 		return (
-			<div style={padStyle} onClick={this.handleClose}>
-			<div style={popupStyle} onClick={this.handleClick}>
-				<input type="text" value={state.value} onChange={this.handleChange}></input>
+			<div style={padStyle} onClick={this.handleClick}>
+				<input ref="textInput" type="text" value={state.value} onChange={this.handleChange} onMouseDown={this.handleInputClick}
+					style={{position:"absolute", fontSize:24, top:"38.2%", textAlign:"center", width:"76.4%", border:"0px"}} ></input>
 				<Action type="Submit.OpenFile" data={state.value}>
-				<Text content="Confirm" align="right"></Text>
+				<Text content="Enter to Confirm" align="center" position="absolute" left="61.8%" top="43.2%" size={24}></Text>
 				</Action>
-			</div></div>);
+			</div>);
 	}
 });
 
