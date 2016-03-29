@@ -1,7 +1,7 @@
 var React = require("react");
 var _ = require("underscore");
 
-var Text =require("./text");
+var ScalingText =require("./texts/scaling_text");
 var Action = require("./action");
 
 var Gradual = require("./mixins/gradual");
@@ -23,14 +23,14 @@ var Dropdown = React.createClass({
 			var type = props.title+"."+a;
 			return (<div key={a} style={style}>
 				<Action type = {type}>
-				<Text content={a} ></Text>
+				<ScalingText content={a} ></ScalingText>
 				</Action>
 				</div>);
 		});
 		var style = _.defaults( state.background, 
 			{marginTop:'10', position:"absolute", fontSize:'20px', cursor:'pointer'});
 		return (<div style={style} onClickCapture={this.handleClick}>
-				<Text content={props.title} ></Text>
+				<ScalingText content={props.title} ></ScalingText>
 				{list}
 			</div>);
 	}
