@@ -30,7 +30,6 @@ var ScalingText = React.createClass({
 		var state = this.state;
 		var left = this.originWidth? "calc("+props.left+" - "+(this.originWidth*state.alpha/40)+"px"+")" : props.left;
 		var top = this.originHeight? "calc("+props.top+" - "+(this.originHeight*state.alpha/40)+"px"+")" : props.top;
-		console.log(left, top);
 		var style = {
 			width: "auto",
 			left: left,

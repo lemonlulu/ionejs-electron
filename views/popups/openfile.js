@@ -15,8 +15,6 @@ var OpenFile = React.createClass({
 	},
 	componentDidMount: function() {
 		var me = this;
-		console.log(this);
-		window.a = this;
 		Actions.on("File.Open", function() {
 			me.setActive(true);
 		});
@@ -29,7 +27,6 @@ var OpenFile = React.createClass({
 	        this.setState({value: event.target.value});
 	},
 	handleInputClick: function(event) {
-		console.log("1");
 		event.preventDefault();
 	},
     	handleClick: function(event) {

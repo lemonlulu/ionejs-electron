@@ -8,6 +8,13 @@ var stageConfig = {
 	alias: "Stage",
 	options: {},
 	children: [{
+		alias: "Painter",
+		options: {
+			name: "image",
+			src: "http://dimg04.c-ctrip.com/images/vacations/153000/152539/832e4d1669aa48b7928664030d7b3b1f.jpg"
+		},
+		children: []
+	}, {
 		alias: "Writer",
 		options: {
 			text: "Hello Ionejs",
@@ -20,13 +27,17 @@ var stageConfig = {
 var Board = React.createClass({
 	componentDidMount: function() {
 		var stage = ionejs.create(stageConfig);
-		ionejs.instance.init(stage, ReactDOM.findDOMNode(this))
+		ionejs.instance.init(stage, ReactDOM.findDOMNode(this));
 		ionejs.instance.run();
+		ionejs.instance.dropable();
+		ionejs.instance.moveable();
+		var image = stage.query("image");
+		image.mode("moveable");
 		this.props.controller && this.props.controller.bind(stage);
 	},
 	render: function() {
 		var style = _.defaults({position: "absolute"}, this.props);
-		return <canvas style={style}/>;
+		return <canvas style={style} />;
 	}
 });
 

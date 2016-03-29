@@ -30,8 +30,8 @@ var App = React.createClass({
 ReactDOM.render(
 		<App>
 		<Popups.OpenFile zIndex="10" />
+		<Board position="absolute" left="0px" top="0px" controller={Controllers.board}/>
 		<Nav position="absolute" left="280px" top="0px"/>
-		<Board position="absolute" left="280px" top="150px" controller={Controllers.board}/>
 		</App>,
 		document.getElementById("app")
 		);

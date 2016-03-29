@@ -41,12 +41,12 @@ var Nav = React.createClass({
 				);
 		});
 
-		var padStyle = {position:"inherit", width:"100%", height:"100%"};
+		var padStyle = {position:"inherit"};
 		var navStyle = _.clone(this.props);
 		var handleClose = function() {};
 		if (!!this.state.currentActiveDropdownlist)  {
 			handleClose = this.handleClose;
-			_.defaults(padStyle, {zIndex:"1"});
+			_.defaults(padStyle, {zIndex:"1", width:"100%", height:"100%"});
 			_.defaults(navStyle, {zIndex:"1"});
 		}
 		return (
