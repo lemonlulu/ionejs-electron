@@ -1,13 +1,9 @@
-var ionejs = require("ionejs");
-var descriptors = require("./descriptors");
-var ones = require("./ones")
-
-var Creator = function(){
+var Parser = function(){
 	this._ones = {};
 	this._descriptors = {};
 };
 
-var p = Creator.prototype;
+var p = Parser.prototype;
 
 p.setOne = function(alias, constructor){
 	this._ones[alias] = constructor;
@@ -47,7 +43,14 @@ p.parse = function(config){
 	}
 
 	return _parse(config);
+};
+
+p.deparse = function() {
 
 };
 
-module.exports = Creator;
+var parser = new Parser();
+parser.setOnes(require("./ones"));
+parser.setDescriptors(require("./descriptors"));
+
+module.exports = parser;
