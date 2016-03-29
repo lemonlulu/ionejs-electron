@@ -13,11 +13,11 @@ var Gradual = function(rate, fps, state) {
 			var alpha;
 			var state = this.state;
 			if (state.active) {
-				alpha = state.alpha*rate + 1 - rate;
+				alpha = state.alpha*(1-rate) + rate;
 				if(state.alpha < 0.95)
 					setTimeout(this.tick, 1000/fps);
 			} else {
-				alpha = state.alpha*rate;
+				alpha = state.alpha*(1-rate);
 				if(state.alpha > 0.05)
 					setTimeout(this.tick, 1000/fps);
 			}
