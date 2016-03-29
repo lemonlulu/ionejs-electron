@@ -2,8 +2,9 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
-var ScalingText = require("../texts/scaling_text")
-var Action = require("../action")
+var ScalingText = require("../texts/scaling_text");
+var FadeText = require("../texts/fade_text");
+var Action = require("../action");
 var Gradual = require("../mixins/gradual");
 
 var OpenFile = React.createClass({
@@ -56,7 +57,7 @@ var OpenFile = React.createClass({
 			<div style={padStyle} onClick={this.handleClick}>
 				<input ref="textInput" type="text" value={state.value} onChange={this.handleChange} onMouseDown={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"38.2%", textAlign:"center", width:"76.4%", border:"0px"}} ></input>
-				<ScalingText content="Click Anywhere to Focus" position="absolute" left="38.2%" top="23.6%" size={24}></ScalingText>
+				<FadeText content="Click Anywhere to Focus" position="absolute" left="38.2%" top="23.6%" size={24}></FadeText>
 				<Action type="Submit.OpenFile" data={state.value}>
 				<ScalingText content="Enter to Confirm" position="absolute" left="61.8%" top="61.8%" size={24}></ScalingText>
 				</Action>
