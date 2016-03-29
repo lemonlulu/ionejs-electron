@@ -9,7 +9,7 @@
   "dependencies": {
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
-    "ionejs": "^1.0.2",
+    "ionejs": "latest",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "underscore": "^1.8.3"
