@@ -56,9 +56,9 @@ var OpenFile = React.createClass({
 			<div style={padStyle} onClick={this.handleClick}>
 				<input ref="textInput" type="text" value={state.value} onChange={this.handleChange} onMouseDown={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"38.2%", textAlign:"center", width:"76.4%", border:"0px"}} ></input>
-				<Text content="Click Anywhere to Focus" position="absolute" left="38.2%" top="33.2%" size={24}></Text>
+				<Text content="Click Anywhere to Focus" position="absolute" left="38.2%" top="23.6%" size={24}></Text>
 				<Action type="Submit.OpenFile" data={state.value}>
-				<Text content="Enter to Confirm" position="absolute" left="61.8%" top="43.2%" size={24}></Text>
+				<Text content="Enter to Confirm" position="absolute" left="61.8%" top="61.8%" size={24}></Text>
 				</Action>
 			</div>);
 	}
