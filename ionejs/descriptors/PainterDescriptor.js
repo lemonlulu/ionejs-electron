@@ -5,7 +5,7 @@ var PainterDescriptor = function(options) {
 	Descriptor.apply(this, arguments);
 	var me = this;
 	me.state = "closed";
-	me.rate = 1/30;
+	me.rate = 1/40;
 	me.process = 0;
 	window.adf = this;
 }
@@ -35,12 +35,13 @@ p.update = function() {
 		me.process -= me.rate;
 	}
 	if(me.process >= 1) {
-		me.process = 1;
-		me.state = "opened";
+		Actions.emit("ionejs.Painter.Edit", this.getOptions(), this.getSource());
+		me.state = "closed";
+		me.process = 0;
 	}
 	if(me.process <= 0) {
-		me.process = 0;
 		me.state = "closed";
+		me.process = 0;
 	}
 };
 

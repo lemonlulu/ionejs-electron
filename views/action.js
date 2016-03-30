@@ -20,5 +20,8 @@ module.exports = Action;
 module.exports.actions = {
 	on : function() {
 		EventEmitter.prototype.on.apply(eventEmitter, arguments);
+	}, 
+	emit: function() {
+		EventEmitter.prototype.emit.apply(eventEmitter, arguments);
 	}
 };
