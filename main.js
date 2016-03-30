@@ -9,6 +9,8 @@ var Board = require("./views/board");
 
 var Popups = require("./views/popups");
 
+var File = require("./views/file");
+
 //Actions
 Actions = require("./views/action").actions;
 //Controllers
@@ -30,6 +32,7 @@ var App = React.createClass({
 ReactDOM.render(
 		<App>
 		<Popups.OpenFile zIndex="10" />
+		<File fontSize="30" opacity="0.9" top="50%" left="48%" position="absolute" controller={Controllers.file} zIndex="11" />
 		<Board position="absolute" left="0px" top="0px" controller={Controllers.board}/>
 		<Nav position="absolute" left="280px" top="0px"/>
 		</App>,
