@@ -27,7 +27,6 @@ var File = React.createClass({
 		return "LoadingImage"+new Array(Math.round(alpha*10)).join(".");
 	},	
 	inactive: function() {
-		console.log("setinactive");
 		this.setActive(false);
 	},
 	mixins: [Cycle(1/10, 10, {})],
