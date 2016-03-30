@@ -36,6 +36,7 @@ var ScalingText = React.createClass({
 			color: state.active ? props.highlightColor : props.normalColor,
 			fontSize: props.size * (1+state.alpha/20),
 		};
+//		console.log(style);
 		var others = _.omit(props, "highlightColor", "normalColor", "size", "content");
 		style = _.defaults(style, others);
 		return (<div style={style} onMouseOver={this.handleMouseIn} onMouseOut={this.handleMouseOut}>{this.props.content}</div>);
