@@ -38,7 +38,7 @@ var OpenFile = React.createClass({
 		this.setState({focus: !this.state.focus});
 		event.stopPropagation();
 	},
-	mixins: [Gradual(7/8, 60, {value: ""})],
+	mixins: [Gradual(1/8, 60, {value: ""})],
 	render: function() {
 		var state = this.state;
 		var padStyle = _.clone(this.props);
