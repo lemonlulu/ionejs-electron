@@ -1,13 +1,14 @@
 var inherits = require("ionejs").inherits;
 var Descriptor = require("./Descriptor");
+var _ = require("underscore");
 
 var PainterDescriptor = function(options) {
+	_.defaults(options, {
+		state: "closed",
+		rate: 1/40,
+		process: 0
+	});
 	Descriptor.apply(this, arguments);
-	var me = this;
-	me.state = "closed";
-	me.rate = 1/40;
-	me.process = 0;
-	window.adf = this;
 }
 
 var p = inherits(PainterDescriptor, Descriptor);
@@ -19,15 +20,15 @@ p.init = function() {
 };
 
 p.opening = function() {
-	this.state = "opening";
+	this._state.state = "opening";
 };
 
 p.closing = function() {
-	this.state = "closing";
+	this._state.state = "closing";
 };
 
 p.update = function() {
-	var me = this;
+	var me = this._state;
 	if (me.state == "opening") {
 		me.process += me.rate;
 	} 
@@ -35,7 +36,7 @@ p.update = function() {
 		me.process -= me.rate;
 	}
 	if(me.process >= 1) {
-		Actions.emit("ionejs.Painter.Edit", this.getOptions(), this.getSource());
+		Actions.emit("ionejs.Painter.Edit", this.getOptions());
 		me.state = "closed";
 		me.process = 0;
 	}
@@ -46,12 +47,12 @@ p.update = function() {
 };
 
 p.draw = function(context) {
-	var image = this.getSource()._image;
+	var image = this.getSource()._state.image;
 	if (!image) return;
 	else {
 		var width = image.width;
 		var height = image.height;
-		var l = (width+height)*this.process*2;
+		var l = (width+height)*this._state.process*2;
 		context.lineWidth = 3;
 		context.beginPath();
 		context.moveTo(0, 0);
