@@ -1,3 +1,4 @@
+var ionejs = require("ionejs");
 var Parser = function(){
 	this._ones = {};
 	this._descriptors = {};
@@ -33,7 +34,7 @@ p.parse = function(config){
 		var one = new G(options);
 		var descriptor = new D(options);
 
-		descriptor.addChild(one);
+		one.addChild(descriptor);
 		
 		for(var i = 0, l = children.length; i < l; i++){
 			var child = _parse(children[i]);
@@ -50,7 +51,9 @@ p.deparse = function() {
 };
 
 var parser = new Parser();
-parser.setOnes(require("./ones"));
+parser.setOne('Painter', ionejs.Painter);
+parser.setOne('Writer', ionejs.Writer);
+parser.setOnes(require("./others"));
 parser.setDescriptors(require("./descriptors"));
 
 module.exports = parser;
