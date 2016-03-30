@@ -18,18 +18,22 @@ var p = FileController.prototype;
 p.open = function() {
 	var me = this;
 	me.view && me.view.active();
-	http.get({
+	var option = {
 		hostname: '10.2.25.0',
-		port: 80,
+		port: 80, 
 		path: arguments[0],
 		agent: false
-	}, (res) => {
+	};
+	var request = http.request(option, (res) => {
 		res.on('data', (chunk) => {
 			me.view && me.view.inactive();
-		})
-		
+		});
 	});
-//	console.log("TODO ACTION: Submit.OpenFile", arguments);
+	request.on('error', (err) => {
+		console.log("request file error ", err);
+		me.view && me.view.inactive();
+	});
+	request.end();
 }
 
 module.exports = FileController;
