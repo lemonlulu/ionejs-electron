@@ -30,17 +30,19 @@ p.parse = function(config){
 
 		var G = me._ones[config.alias]
 		var D = me._descriptors[config.alias];
-
 		var one = new G(options);
-		var descriptor = new D(options);
-
-		one.addChild(descriptor);
 		
 		for(var i = 0, l = children.length; i < l; i++){
 			var child = _parse(children[i]);
 			one.addChild(child);
 		}
-		return descriptor;
+
+		if (!!D) {
+			var descriptor = new D(options);
+			one.addChild(descriptor);
+		}
+
+		return one;
 	}
 
 	return _parse(config);
@@ -51,9 +53,10 @@ p.deparse = function() {
 };
 
 var parser = new Parser();
-parser.setOne('Painter', ionejs.Painter);
-parser.setOne('Writer', ionejs.Writer);
 parser.setOnes(require("./others"));
 parser.setDescriptors(require("./descriptors"));
+parser.setOne('Stage', ionejs.Stage);
+parser.setOne('Painter', ionejs.Painter);
+parser.setOne('Writer', ionejs.Writer);
 
 module.exports = parser;
