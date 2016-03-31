@@ -19,10 +19,21 @@ var OpenFile = React.createClass({
 		});
 
 	},
-    	handleChange: function(event) {
+    	handleChangeNumber: function(event) {
 		var options = this.state.options;
-		options.x = parseInt(event.target.value);
-	        this.setState({options: options});
+		var name = event.target.name;
+		var value = event.target.value;
+		console.log(name, value);
+		if (value.length == 0)
+			value = 0;
+		else if (value.length > 2 && value.startsWith("0"))
+			value = parseFloat(value.slice(1, value.length));
+		else 
+			value = parseFloat(value);
+		if (!isNaN(value)) {
+			options[name] = value;
+			this.setState({options: options});
+		}
 	},
 	handleInputClick: function(event) {
 		event.stopPropagation();
@@ -43,8 +54,13 @@ var OpenFile = React.createClass({
 			height:"100%"});
 		return (
 			<div style={padStyle} onClick={this.handleClick}>
-				<input type="text" value={state.options.x || ""} onChange={this.handleChange} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"38.2%", textAlign:"center", width:"76.4%", border:"0px"}} ></input>
+				<input type="text" name="x" value={state.options.x} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
+					style={{position:"absolute", fontSize:24, top:"28.2%", left:"38.2", width:"50px"}} ></input>
+				<input type="text" name="y" value={state.options.y} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
+					style={{position:"absolute", fontSize:24, top:"33.2%", left:"38.2", width:"50px"}} ></input>
+				<input type="text" name="alpha" value={state.options.alpha} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
+					style={{position:"absolute", fontSize:24, top:"38.2%", left:"38.2", width:"50px"}} ></input>
+
 				<Action type="Submit.ionejs.Painter.Edit" data={state.value}>
 				<ScalingText content="Confirm" position="absolute" left="61.8%" top="61.8%" size={24}></ScalingText>
 				</Action>
