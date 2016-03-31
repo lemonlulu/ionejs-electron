@@ -38,7 +38,9 @@ p.parse = function(config){
 		}
 
 		if (!!D) {
-			var descriptor = new D(options);
+			var descriptor = new D({
+				options: options
+			});
 			one.addChild(descriptor);
 		}
 
