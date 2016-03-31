@@ -17,6 +17,7 @@ var OpenFile = React.createClass({
 		var me = this;
 		Actions.on("File.Open", function() {
 			me.setActive(true);
+			me.refs.infoText.active();
 		});
 		Actions.on("Submit.OpenFile", function() {
 	        	me.setState({value: ""});
@@ -24,7 +25,13 @@ var OpenFile = React.createClass({
 
 	},
 	handleChange: function(event) {
-	        this.setState({value: event.target.value});
+		var value = event.target.value;
+	        this.setState({value: value});
+		if (value.length > 0) {
+			this.refs.confirmText.active();
+		} else {
+			this.refs.confirmText.inactive();
+		}
 	},
 	handleInputClick: function(event) {
 		event.preventDefault();
@@ -32,10 +39,13 @@ var OpenFile = React.createClass({
     	handleClick: function(event) {
 		if (this.state.focus) {
 	        	this.setState({value: ""});
+			this.refs.confirmText.inactive();
 			this.setActive(false);
 		}
-		else 
+		else {  
 			ReactDOM.findDOMNode(this.refs.textInput).focus();
+			this.refs.infoText.inactive();
+		}
 		this.setState({focus: !this.state.focus});
 		event.stopPropagation();
 	},
@@ -54,9 +64,9 @@ var OpenFile = React.createClass({
 			<div style={padStyle} onClick={this.handleClick}>
 				<input ref="textInput" type="text" value={state.value} onChange={this.handleChange} onMouseDown={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"38.2%", textAlign:"center", width:"76.4%", border:"0px"}} ></input>
-				<FadeText content="Click Anywhere to Focus" position="absolute" left="38.2%" top="23.6%" size={24}></FadeText>
+				<FadeText ref="infoText" content="Click Anywhere to Focus" position="absolute" left="38.2%" top="23.6%" size={24}></FadeText>
 				<Action type="Submit.OpenFile" data={state.value}>
-				<ScalingText content="Enter to Confirm" position="absolute" left="61.8%" top="61.8%" size={24}></ScalingText>
+				<FadeText ref="confirmText" content="Enter to Confirm" position="absolute" left="61.8%" top="61.8%" size={24}></FadeText>
 				</Action>
 			</div>);
 	}

@@ -21,11 +21,11 @@ var FadeText = React.createClass({
 		normalColor: React.PropTypes.string,
 		highlightColor: React.PropTypes.string
 	},
-	mixins: [Gradual(1/20, 60, {})], 
-	handleMouseIn: function() {
+	mixins: [Gradual(1/10, 60, {})], 
+	active: function() {
 		this.setActive(true);
 	},
-	handleMouseOut: function() {
+	inactive: function() {
 		this.setActive(false);
 	}, 
 	render: function() {
@@ -33,8 +33,8 @@ var FadeText = React.createClass({
 		var state = this.state;
 		var style = {
 			opacity:state.alpha,
-			display:"block",
-			color: props.highlightColor,
+			display:state.alpha > 0.1 ? "block" : "none",
+			color: props.normalColor,
 			fontSize: props.size,
 		};
 		var others = _.omit(props, "align", "highlightColor", "normalColor", "size", "content");
