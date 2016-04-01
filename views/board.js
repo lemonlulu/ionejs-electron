@@ -37,7 +37,7 @@ var Board = React.createClass({
 		this.props.controller && this.props.controller.bind(stage);
 	},
 	render: function() {
-		var style = _.defaults({position: "absolute"}, this.props);
+		var style = _.clone(this.props);
 		return <canvas style={style} />;
 	}
 });

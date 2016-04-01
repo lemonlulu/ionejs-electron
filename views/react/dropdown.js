@@ -7,7 +7,7 @@ var Action = require("./action");
 var Gradual = require("./mixins/gradual");
 
 var Dropdown = React.createClass({
-	mixins: [Gradual(3/4, 60, {background: { backgroundColor: '#fff'}})],
+	mixins: [Gradual(1/4, 60, {background: { backgroundColor: '#fff'}})],
 	propTypes: {
 		title: React.PropTypes.string
 	},

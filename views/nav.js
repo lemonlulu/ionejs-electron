@@ -1,14 +1,12 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
 
-var Dropdown = require("./dropdown");
+var Dropdown = require("./react/dropdown");
 var _ = require("underscore");
 
 var layout = [
-	{ title: "File", actions: ["Open", "Close"]},
-	{ title: "Shape", actions: ["Crop", "Resize"]},
-	{ title: "Color", actions: ["Red", "Green", "Blue"]},
-	{ title: "Effect", actions: ["Watermark", "Digimark", "About"]}];
+	{ title: "File", actions: ["NewProject", "LoadProject"]},
+	{ title: "Edit", actions: ["AddPainter", "AddWriter"]}];
 
 var Nav = React.createClass({
 	getInitialState: function() {
@@ -43,6 +41,7 @@ var Nav = React.createClass({
 
 		var padStyle = {position:"inherit"};
 		var navStyle = _.clone(this.props);
+		navStyle.position = 'absolute';
 		var handleClose = function() {};
 		if (!!this.state.currentActiveDropdownlist)  {
 			handleClose = this.handleClose;
