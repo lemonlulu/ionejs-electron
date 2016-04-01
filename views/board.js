@@ -3,7 +3,7 @@ var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
 var ionejs = require("ionejs");
-var ionejsParser = require("../ionejs/Parser");
+var ionejsParser = require("./ionejs/Parser");
 
 var stageConfig = {
 	alias: "Stage",
