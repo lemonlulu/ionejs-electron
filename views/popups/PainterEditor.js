@@ -2,11 +2,11 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
-var ScalingText = require("../texts/scaling_text")
-var Action = require("../action")
-var Gradual = require("../mixins/gradual");
+var ScalingText = require("../react/texts/scaling_text")
+var Action = require("../react/action")
+var Gradual = require("../react/mixins/gradual");
 
-var OpenFile = React.createClass({
+var PainterEditor = React.createClass({
 	componentDidMount: function() {
 		var me = this;
 		Actions.on("ionejs.Painter.Edit", function(options) {
@@ -63,37 +63,37 @@ var OpenFile = React.createClass({
 			<div style={padStyle} onClick={this.handleClick}>
 				<div style={{position:"absolute", fontSize:24, top:"8.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>src</div>
 				<input type="text" name="src" value={state.options.src} onChange={this.handleChangeString} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"8.2%", left:"28.2%", width:"38.2%", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"8.2%", left:"28.2%", width:"38.2%", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"13.2%", left:"calc(61.8% - 100px)", width:"100px"}}>x</div>
 				<input type="text" name="x" value={state.options.x} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"13.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"13.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"18.2%", left:"calc(61.8% - 100px)", width:"100px"}}>y</div>
 				<input type="text" name="y" value={state.options.y} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"18.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"18.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"23.2%", left:"calc(61.8% - 100px)", width:"100px"}}>regX</div>
 				<input type="text" name="regX" value={state.options.regX} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"23.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"23.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"28.2%", left:"calc(61.8% - 100px)", width:"100px"}}>regY</div>
 				<input type="text" name="regY" value={state.options.regY} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"28.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"28.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"33.2%", left:"calc(61.8% - 100px)", width:"100px"}}>rotation</div>
 				<input type="text" name="rotation" value={state.options.rotation} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"33.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"33.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"38.2%", left:"calc(61.8% - 100px)", width:"100px"}}>sacleX</div>
 				<input type="text" name="scaleX" value={state.options.scaleX} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"38.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"38.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"43.2%", left:"calc(61.8% - 100px)", width:"100px"}}>sacleY</div>
 				<input type="text" name="scaleY" value={state.options.scaleY} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"43.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"43.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"48.2%", left:"calc(61.8% - 100px)", width:"100px"}}>skewX</div>
 				<input type="text" name="skewX" value={state.options.skewX} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"48.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"48.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"53.2%", left:"calc(61.8% - 100px)", width:"100px"}}>skewY</div>
 				<input type="text" name="skewY" value={state.options.skewY} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"53.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"53.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"58.2%", left:"calc(61.8% - 100px)", width:"100px"}}>alpha</div>
 				<input type="text" name="alpha" value={state.options.alpha} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
-					style={{position:"absolute", fontSize:24, top:"58.2%", left:"61.8%", width:"50px", textAlign:"right"}} ></input>
+					style={{position:"absolute", fontSize:24, top:"58.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
 
 				<Action type="Submit.ionejs.Painter.Edit" data={state.value}>
 				<ScalingText content="Confirm" position="absolute" left="61.8%" top="calc(61.8% + 50px)" size={24}></ScalingText>
@@ -102,4 +102,4 @@ var OpenFile = React.createClass({
 	}
 });
 
-module.exports = OpenFile;
+module.exports = PainterEditor;

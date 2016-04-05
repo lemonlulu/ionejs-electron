@@ -29,7 +29,7 @@ p.parse = function(config){
 		var children = config.children;
 
 		var G = me._ones[config.alias]
-		var D = me._descriptors[config.alias];
+		var Ds = me._descriptors[config.alias];
 		var one = new G(options);
 		
 		for(var i = 0, l = children.length; i < l; i++){
@@ -37,11 +37,15 @@ p.parse = function(config){
 			one.addChild(child);
 		}
 
-		if (!!D) {
-			var descriptor = new D({
-				options: options
-			});
-			one.addChild(descriptor);
+		if (!!Ds) {
+			for (var i = 0; i < Ds.length; i++) {
+				var D = Ds[i];
+				var descriptor = new D({
+					options: options,
+					children: children
+				});
+				one.addChild(descriptor);
+			}
 		}
 
 		return one;

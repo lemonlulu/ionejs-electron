@@ -3,6 +3,7 @@ var ReactDOM = require("react-dom");
 
 var Board = require("./views/board");
 var Nav = require("./views/nav")
+var Popups = require("./views/popups")
 
 //Actions
 Actions = require("./views/react/action").actions;
@@ -25,6 +26,7 @@ var App = React.createClass({
 
 ReactDOM.render(
 		<App>
+		<Popups />
 		<Nav left="280px" top="0px"/>
 		<Board left="0px" top="0px" controller={Controllers.board}/>
 		</App>,

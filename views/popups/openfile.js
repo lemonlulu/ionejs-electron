@@ -2,8 +2,8 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
-var ScalingText = require("../texts/scaling_text");
-var FadeText = require("../texts/fade_text");
+var ScalingText = require("../react/texts/scaling_text");
+var FadeText = require("../react/texts/fade_text");
 var Action = require("../action");
 var Gradual = require("../mixins/gradual");
 
