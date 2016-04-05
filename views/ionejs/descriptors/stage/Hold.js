@@ -1,8 +1,9 @@
 var inherits = require("ionejs").inherits;
-var Descriptor = require("./Descriptor");
+var Event = require('ionejs').Event;
+var Descriptor = require("../Descriptor");
 var _ = require("underscore");
 
-var PainterDescriptor = function(options) {
+var Hold = function(options) {
 	_.defaults(options, {
 		state: "closed",
 		rate: 1/40,
@@ -11,18 +12,20 @@ var PainterDescriptor = function(options) {
 	Descriptor.apply(this, arguments);
 }
 
-var p = inherits(PainterDescriptor, Descriptor);
+var p = inherits(Hold, Descriptor);
 
 p.init = function() {
-	var me = this;
-	me.getSource().addEventListener('mousedown', function(event) {
-		me.opening()
+	var src = this.getSource();
+	var des = this;
+	src.addEventListener('mousedown', function(event) {
+		if (event.target == src)
+			des.opening();
 	});
-	me.getSource().addEventListener('mouseup', function(event) {
-		me.closing();
+	src.addEventListener('mousemove', function(event) {
+		des.closing();
 	});
-	me.getSource().addEventListener('mousemove', function(event) {
-		me.closing();
+	src.addEventListener('mouseup', function(event) {
+		des.closing();
 	});
 };
 
@@ -35,6 +38,7 @@ p.closing = function() {
 };
 
 p.update = function() {
+	var _this = this;
 	var me = this._state;
 	if (me.state == "opening") {
 		me.process += me.rate;
@@ -43,7 +47,9 @@ p.update = function() {
 		me.process -= me.rate;
 	}
 	if(me.process >= 1) {
-		Actions.emit("ionejs.Painter.Edit", this.getOptions());
+		_this.dispatchEvent(new Event({
+			type: 'hold'
+		}));
 		me.state = "closed";
 		me.process = 0;
 	}
@@ -86,4 +92,4 @@ p.draw = function(context) {
 	}
 };
 
-module.exports = PainterDescriptor;
+module.exports = Hold;

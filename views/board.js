@@ -30,6 +30,7 @@ var Board = React.createClass({
 		var stage = ionejsParser.parse(stageConfig);
 		ionejs.instance.init(stage, ReactDOM.findDOMNode(this));
 		ionejs.instance.run();
+		ionejs.instance._debug = false;
 		ionejs.instance.dropable();
 		ionejs.instance.moveable();
 		var image = stage.query("image");

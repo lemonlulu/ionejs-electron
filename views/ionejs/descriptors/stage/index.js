@@ -1,1 +1,1 @@
-module.exports = [require('./Family')];
+module.exports = [require('./Family'), require('./Hold')];
