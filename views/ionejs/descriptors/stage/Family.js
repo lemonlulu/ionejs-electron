@@ -3,6 +3,7 @@ var inherits = ionejs.inherits;
 var blur = ionejs.blur;
 var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
+var DualWriter = require('../../ones/writers/DualWriter');
 var _ = require('underscore');
 
 var Family = function(options) {
@@ -41,15 +42,27 @@ p.open = function() {
 	for (var i in children) {
 		var alias = children[i].alias;
 		var name = children[i].options.name;
-		var child = new Writer({
+		var child = new DualWriter({
 			x: (i%3>>0)*200 + 500,
 			y: (i/3>>0)*200 + 160,
 			name: name + '_tag',
 			text: name ? '-'+name : '-anonymity',
 			prefix: alias,
 			baseline: 'middle',
-			align: 'center'
+			align: 'center',
+		    	height: 20,
+			in: {
+		    		height: 24,
+				font: "Bold 24px Arial"
+			},
+		    	out: {
+		    		height: 20,
+				font: "Bold 20px Arial"
+			}
 		});
+		//child.mode('hitable');
+		child.init();
+		console.log(child);
 		this.addChild(child);
 	}
 	i++;
