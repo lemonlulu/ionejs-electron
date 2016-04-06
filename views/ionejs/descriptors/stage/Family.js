@@ -1,5 +1,7 @@
-var inherits = require('ionejs').inherits;
-var blur = require('ionejs').blur;
+var ionejs = require('ionejs');
+var inherits = ionejs.inherits;
+var blur = ionejs.blur;
+var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
 var _ = require('underscore');
 
@@ -16,11 +18,50 @@ var Family = function(options) {
 var p = inherits(Family, Descriptor);
 
 p.init = function() {
+	var config = {
+		alias: 'Stage',
+		options: this._state.options, 
+		children: this._state.children
+	}
+	this._state.ones = ionejs.create(config);
 	this.getSource().addEventListener('hold', this.open.bind(this));
 };
 
 p.open = function() {
 	this._state.beta = 1;
+	var path = new Writer({
+		x: 160,
+		y: 200,
+		name: 'path',
+		text: 'stage',
+		prefix: 'PATH    '
+	});
+	this.addChild(path);
+	var children = this._state.children;
+	for (var i in children) {
+		var alias = children[i].alias;
+		var name = children[i].options.name;
+		var child = new Writer({
+			x: (i%3>>0)*200 + 500,
+			y: (i/3>>0)*200 + 160,
+			name: name + '_tag',
+			text: name ? '-'+name : '-anonymity',
+			prefix: alias,
+			baseline: 'middle',
+			align: 'center'
+		});
+		this.addChild(child);
+	}
+	i++;
+	var child = new Writer({
+		x: (i%3>>0)*200 + 500,
+		y: (i/3>>0)*200 + 160,
+		name: 'new_tag',
+		text: 'new One',
+		baseline: 'middle',
+		align: 'center'
+	});
+	this.addChild(child);
 };
 
 p.close = function() {
@@ -35,10 +76,6 @@ p.draw = function(ctx) {
 	try {
         	ctx.fillStyle = '#ffffff';
 		ctx.fillRect(0, 0, this.getSource()._state.width, this.getSource()._state.height);
-
-		ctx.font="30px Georgia";
-		ctx.fillStyle = "#000000";
-		ctx.fillText('path: '+'stage', 160, 100);
 	} catch (e) {}
 };
 
