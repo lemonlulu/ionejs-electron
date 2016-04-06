@@ -3,7 +3,7 @@ var inherits = ionejs.inherits;
 var blur = ionejs.blur;
 var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
-var DualWriter = require('../../ones/writers/DualWriter');
+var DualWriter = require('../../others/writers/DualWriter');
 var _ = require('underscore');
 
 var Family = function(options) {
@@ -41,7 +41,8 @@ p.open = function() {
 	var children = this._state.children;
 	for (var i in children) {
 		var alias = children[i].alias;
-		var name = children[i].options.name;
+		var options = children[i].options;
+		var name = options.name;
 		var child = new DualWriter({
 			x: (i%3>>0)*200 + 500,
 			y: (i/3>>0)*200 + 160,
@@ -58,9 +59,9 @@ p.open = function() {
 		    	out: {
 		    		height: 20,
 				font: "Bold 20px Arial"
-			}
+			},
+			options: options
 		});
-		//child.mode('hitable');
 		child.init();
 		console.log(child);
 		this.addChild(child);

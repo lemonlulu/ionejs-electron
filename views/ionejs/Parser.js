@@ -59,7 +59,7 @@ p.deparse = function() {
 };
 
 var parser = new Parser();
-parser.setOnes(require("./others"));
+//parser.setOnes(require("./others"));
 parser.setDescriptors(require("./descriptors"));
 parser.setOne('Stage', ionejs.Stage);
 parser.setOne('Painter', ionejs.Painter);
