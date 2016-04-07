@@ -33,8 +33,6 @@ var Board = React.createClass({
 		ionejs.instance._debug = false;
 		ionejs.instance.dropable();
 		ionejs.instance.moveable();
-		var image = stage.query("image");
-		image.mode("moveable");
 		this.props.controller && this.props.controller.bind(stage);
 	},
 	render: function() {

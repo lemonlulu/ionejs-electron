@@ -3,7 +3,7 @@ var inherits = ionejs.inherits;
 var blur = ionejs.blur;
 var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
-var DualWriter = require('../../others/writers/DualWriter');
+var FamilyChild = require('./FamilyChild');
 var _ = require('underscore');
 
 var Family = function(options) {
@@ -19,13 +19,45 @@ var Family = function(options) {
 var p = inherits(Family, Descriptor);
 
 p.init = function() {
+	var I = this;
 	var config = {
 		alias: 'Stage',
-		options: this._state.options, 
-		children: this._state.children
+		options: I._state.options, 
+		children: I._state.children
 	}
-	this._state.ones = ionejs.create(config);
-	this.getSource().addEventListener('hold', this.open.bind(this));
+	I._state.ones = ionejs.create(config);
+	I.getSource().addEventListener('hold', this.open.bind(this));
+	var demo;
+	var x = 1000;
+	var y = 170;
+	var t;
+	I.addEventListener('Select', function(e) {
+		demo = ionejs.create({
+			alias: e.data.alias,
+		    	options: e.data.options
+		});
+		t = x;
+		x = demo._state.x;
+		demo._state.x = t;
+		t = y;
+		y = demo._state.y;
+		demo._state.y = t;
+		I.addChild(demo);
+	});
+	I.addEventListener('Unselect', function(e) {
+		console.log(2);
+		t = demo._state.x;
+		demo._state.x = x;
+		x = t;
+		t = demo._state.y;
+		demo._state.y = y;
+		y = t;
+		I.removeChild(demo);
+	});
+	I.addEventListener('OpenEditor', function(e) {
+		I.close();
+		Actions.emit("ionejs.Painter.Edit", e.data.options);
+	});
 };
 
 p.open = function() {
@@ -43,7 +75,7 @@ p.open = function() {
 		var alias = children[i].alias;
 		var options = children[i].options;
 		var name = options.name;
-		var child = new DualWriter({
+		var child = new FamilyChild({
 			x: (i%3>>0)*200 + 500,
 			y: (i/3>>0)*200 + 160,
 			name: name + '_tag',
@@ -63,7 +95,7 @@ p.open = function() {
 			options: options
 		});
 		child.init();
-		console.log(child);
+		child.mode('dropable');
 		this.addChild(child);
 	}
 	i++;
@@ -80,6 +112,7 @@ p.open = function() {
 
 p.close = function() {
 	this._state.beta = 0;
+	this.removeAllChildren();
 };
 
 p.update = function() {

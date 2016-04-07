@@ -14,15 +14,16 @@ var PainterDescriptor = function(options) {
 var p = inherits(PainterDescriptor, Descriptor);
 
 p.init = function() {
-	var me = this;
-	me.getSource().addEventListener('mousedown', function(event) {
-		me.opening()
+	var I = this;
+	I.getSource().mode('moveable');
+	I.getSource().addEventListener('mousedown', function(event) {
+		I.opening()
 	});
-	me.getSource().addEventListener('mouseup', function(event) {
-		me.closing();
+	I.getSource().addEventListener('mouseup', function(event) {
+		I.closing();
 	});
-	me.getSource().addEventListener('mousemove', function(event) {
-		me.closing();
+	I.getSource().addEventListener('mousemove', function(event) {
+		I.closing();
 	});
 };
 
