@@ -84,14 +84,16 @@ p.open = function() {
 		this.addChild(child);
 	}
 	i++;
-	var child = new Writer({
-		x: (i%3>>0)*200 + 500,
-		y: (i/3>>0)*200 + 160,
-		name: 'new_tag',
-		text: 'new One',
-		baseline: 'middle',
-		align: 'center'
+	var child = ionejs.create({
+		alias: 'writers.SpinWriter',
+		options: {
+			x: (i%3>>0)*200 + 500,
+			y: (i/3>>0)*200 + 160,
+			name: 'new_tag',
+		}
 	});
+	child.init();
+	child.mode('dropable');
 	this.addChild(child);
 };
 
