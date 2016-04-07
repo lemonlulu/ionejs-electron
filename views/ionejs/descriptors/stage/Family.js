@@ -33,8 +33,8 @@ p.init = function() {
 	var t;
 	I.addEventListener('Select', function(e) {
 		demo = ionejs.create({
-			alias: e.data.alias,
-		    	options: e.data.options
+			alias: e.data.config.alias,
+		    	options: e.data.config.options
 		});
 		t = x;
 		x = demo._state.x;
@@ -45,7 +45,6 @@ p.init = function() {
 		I.addChild(demo);
 	});
 	I.addEventListener('Unselect', function(e) {
-		console.log(2);
 		t = demo._state.x;
 		demo._state.x = x;
 		x = t;
@@ -56,7 +55,7 @@ p.init = function() {
 	});
 	I.addEventListener('OpenEditor', function(e) {
 		I.close();
-		Actions.emit("ionejs.Painter.Edit", e.data.options);
+		Actions.emit("ionejs.Painter.Edit", e.data.config.options);
 	});
 };
 
@@ -78,21 +77,7 @@ p.open = function() {
 		var child = new FamilyChild({
 			x: (i%3>>0)*200 + 500,
 			y: (i/3>>0)*200 + 160,
-			name: name + '_tag',
-			text: name ? '-'+name : '-anonymity',
-			prefix: alias,
-			baseline: 'middle',
-			align: 'center',
-		    	height: 20,
-			in: {
-		    		height: 24,
-				font: "Bold 24px Arial"
-			},
-		    	out: {
-		    		height: 20,
-				font: "Bold 20px Arial"
-			},
-			options: options
+			config: children[i]
 		});
 		child.init();
 		child.mode('dropable');

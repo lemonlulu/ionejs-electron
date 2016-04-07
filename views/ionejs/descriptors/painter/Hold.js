@@ -1,8 +1,9 @@
 var inherits = require("ionejs").inherits;
-var Descriptor = require("./Descriptor");
+var Event = require('ionejs').Event;
+var Descriptor = require("../Descriptor");
 var _ = require("underscore");
 
-var PainterDescriptor = function(options) {
+var Hold = function(options) {
 	_.defaults(options, {
 		state: "closed",
 		rate: 1/40,
@@ -11,7 +12,7 @@ var PainterDescriptor = function(options) {
 	Descriptor.apply(this, arguments);
 }
 
-var p = inherits(PainterDescriptor, Descriptor);
+var p = inherits(Hold, Descriptor);
 
 p.init = function() {
 	var I = this;
@@ -36,6 +37,7 @@ p.closing = function() {
 };
 
 p.update = function() {
+	var _this = this;
 	var me = this._state;
 	if (me.state == "opening") {
 		me.process += me.rate;
@@ -87,4 +89,4 @@ p.draw = function(context) {
 	}
 };
 
-module.exports = PainterDescriptor;
+module.exports = Hold;
