@@ -55,7 +55,7 @@ p.init = function() {
 	});
 	I.addEventListener('OpenEditor', function(e) {
 		I.close();
-		Actions.emit("ionejs.Painter.Edit", e.data.config.options);
+		Actions.emit("ionejs."+ e.data.config.alias +".Edit", e.data.config.options);
 	});
 };
 
