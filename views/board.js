@@ -4,6 +4,7 @@ var _ = require("underscore");
 
 var ionejs = require("ionejs");
 var ionejsParser = require("./ionejs/Parser");
+console.log(ionejsParser);
 
 var stageConfig = {
 	alias: "Stage",

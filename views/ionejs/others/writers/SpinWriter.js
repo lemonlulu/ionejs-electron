@@ -14,6 +14,9 @@ p.init = function() {
 	var me = this;
 	var _S = this._state;
 	_S.angle = 0;
+	_S.switching = false;
+	_S.turned = false;
+	_S.current = 0;
 	me.addEventListener('mouseout', function(e) {
 		_S.turned = false;
 	});
@@ -26,7 +29,8 @@ p.init = function() {
 			name: 'front',
 			baseline: 'middle',
 			align: 'center',
-	    		text: 'hello',
+	    		text: _S.texts[0],
+	    		prefix: _S.prefix,
 	    		height: 20,
 			alpha: 1,
 		}
@@ -37,7 +41,8 @@ p.init = function() {
 			name: 'back',
 			baseline: 'middle',
 			align: 'center',
-	    		text: 'world',
+	    		text: _S.texts[1],
+	    		prefix: _S.prefix,
 			alpha: 0
 		}
 	});
@@ -48,15 +53,29 @@ p.init = function() {
 
 p.update = function() {
 	var _S = this._state;
-	if (_S.turned && _S.angle < 180) _S.angle += 3;
-	else if (!_S.turned && _S.angle > 0) _S.angle -= 3;
-	else return;
+	var length = this._state.texts.length;
 	var front = this.query('front');
 	var back = this.query('back');
-	front._state.y = Math.sin(_S.angle * Math.PI/180);
-	front._state.alpha = 0.5 + 0.5 * Math.cos(_S.angle * Math.PI/180);
-	back._state.y = - Math.sin(_S.angle * Math.PI/180);
-	back._state.alpha = 0.5 - 0.5 * Math.cos(_S.angle * Math.PI/180);
+	if (!_S.switching && _S.turned) {
+		_S.current += 1;
+		_S.current %= length;
+		_S.process %= length;
+		next = (_S.current + 1) % length;
+		front._state.text = _S.texts[_S.current];
+		back._state.text = _S.texts[next];
+		_S.angle = 0;
+		_S.switching = true;
+	}
+	if (_S.switching) {
+		_S.angle += 3; 
+		front._state.y = Math.sin(_S.angle * Math.PI/180);
+		front._state.alpha = 0.5 + 0.5 * Math.cos(_S.angle * Math.PI/180);
+		back._state.y = - Math.sin(_S.angle * Math.PI/180);
+		back._state.alpha = 0.5 - 0.5 * Math.cos(_S.angle * Math.PI/180);
+		if (_S.angle >= 180) {
+			_S.switching = false;
+		}
+	}
 };
 
 module.exports = SpinWriter;
