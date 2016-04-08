@@ -62,7 +62,7 @@ p.init = function() {
 		var newOne = parser.parse(config);
 		newOne._init();
 		var current = I.getSource();
-		current.addChild(newOne);
+		current.insertChild(newOne, I._state.children.length);
 		I._state.children.push(config);
 		I.close();
 		Actions.emit("ionejs."+ e.data.alias +".Edit", config.options);
