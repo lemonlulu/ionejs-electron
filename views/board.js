@@ -3,8 +3,7 @@ var ReactDOM = require("react-dom");
 var _ = require("underscore");
 
 var ionejs = require("ionejs");
-var ionejsParser = require("./ionejs/Parser");
-console.log(ionejsParser);
+var uonejs = require("./ionejs");
 
 var stageConfig = {
 	alias: "Stage",
@@ -28,7 +27,7 @@ var stageConfig = {
 
 var Board = React.createClass({
 	componentDidMount: function() {
-		var stage = ionejsParser.parse(stageConfig);
+		var stage = uonejs.create(stageConfig);
 		ionejs.instance.init(stage, ReactDOM.findDOMNode(this));
 		ionejs.instance.run();
 		ionejs.instance._debug = false;

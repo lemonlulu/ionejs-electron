@@ -1,6 +1,3 @@
-var ionejs = require("ionejs");
-var others = require("./others");
-var descriptors = require("./descriptors");
 var Parser = function(){
 	this._ones = {};
 	this._descriptors = {};
@@ -56,13 +53,5 @@ p.parse = function(config){
 	return _parse(config);
 };
 
-p.deparse = function() {
-
-};
-
 var parser = new Parser();
-parser.setDescriptors(descriptors);
-parser.setOne('Stage', ionejs.Stage);
-parser.setOne('Painter', ionejs.Painter);
-parser.setOne('Writer', ionejs.Writer);
 module.exports = parser;

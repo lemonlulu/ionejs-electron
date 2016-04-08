@@ -12,7 +12,6 @@ var PainterEditor = React.createClass({
 		Actions.on("ionejs.Painter.Edit", function(options) {
 			me.setState({options: options});
 			me.setActive(true);
-			window.o1 = options;
 		});
 		Actions.on("Submit.ionejs.Painter.Edit", function() {
 	        	me.setState({value: ""});

@@ -1,5 +1,5 @@
 var ionejs = require('ionejs');
-var ionejsParser = require('../../Parser');
+var parser = require('../../parser');
 var inherits = ionejs.inherits;
 var blur = ionejs.blur;
 var Writer = ionejs.Writer;
@@ -21,7 +21,6 @@ var Family = function(options) {
 var p = inherits(Family, Descriptor);
 
 p.init = function() {
-	console.log(ionejsParser);
 	var I = this;
 	I.getSource().addEventListener('hold', this.open.bind(this));
 	var demo;
@@ -60,8 +59,8 @@ p.init = function() {
 			options: {},
 			children: []
 		}
-		console.log(ionejsParser);
-		var newOne = ionejsParser.parse(config);
+		var newOne = parser.parse(config);
+		newOne._init();
 		var current = I.getSource();
 		current.addChild(newOne);
 		I._state.children.push(config);
