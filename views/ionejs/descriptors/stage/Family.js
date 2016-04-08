@@ -76,10 +76,10 @@ p.open = function() {
 
 p.close = function() {
 	this._state.beta = 0;
+	this.removeAllChildren();
 };
 
 p.sync = function() {
-	this.removeAllChildren();
 	var path = new Writer({
 		x: 160,
 		y: 200,
