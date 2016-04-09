@@ -3,6 +3,7 @@ var _ = require('underscore');
 
 var RotatingPainter = function(options) {
 	_.defaults(options, {
+		free: false,
 		speed: 1
 	});
     ionejs.Painter.apply(this, arguments);
@@ -16,7 +17,7 @@ p.update = function() {
     _S.rotation += _S.speed;
     _S.rotation %= 360;
     var image = _S.image
-    if (image) {
+    if (image && !_S.free) {
 	    _S.regX = -image.width/2;
 	    _S.regY = -image.height/2;
     }
