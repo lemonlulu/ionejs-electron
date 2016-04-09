@@ -39,6 +39,7 @@ p.draw = function(ctx) {
 	Writer.prototype.draw.apply(this, arguments);
 	var _S = this._state;
 	if(_S.shouldMeasure) {
+		_S.height = Number(ctx.font.match(/([0-9]+)px/)[1]);
 		_S.width = ctx.measureText(_S.prefix+_S.text).width;
 		_S.shouldMeasure = false;
 	}
