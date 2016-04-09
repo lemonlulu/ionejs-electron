@@ -9,7 +9,7 @@ var stageConfig = {
 	alias: "Stage",
 	options: {},
 	children: [{
-		alias: "Painter",
+		alias: "painters.RotatingPainter",
 		options: {
 			name: "image",
 			src: "http://dimg04.c-ctrip.com/images/vacations/153000/152539/832e4d1669aa48b7928664030d7b3b1f.jpg"
