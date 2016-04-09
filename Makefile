@@ -17,5 +17,8 @@ $(APPJS): $(SRCJS) $(MOD)
 $(MOD): package.json
 	npm install
 
+export: $(EXPORTSJS)
+	$(BROWSERIFY) -t [ babelify --presets [ react ] ] export.js -o export1.js
+
 clean:
 	rm -rf $(APPJS)
