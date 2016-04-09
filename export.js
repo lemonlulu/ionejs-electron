@@ -22,7 +22,17 @@ var stageConfig = {
         "skewY": 0,
         "alpha": 1
     },
-    "children": [
+    "children": [{
+        "alias": "Cliper",
+	"options": {
+		x: -440,
+		y: -40,
+		startX: 440,
+		startY: 0,
+		width: 800,
+		height: 540
+	},
+	"children": [
         {
             "alias": "Writer",
             "options": {
@@ -243,9 +253,9 @@ var stageConfig = {
                 "font":"Bold Italic 40px 黑体"
             },
             "children": []
-        },
-
+        }
     ]
+    }]
 };
 
 var stage = ionejs.create(stageConfig);
