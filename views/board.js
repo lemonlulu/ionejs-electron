@@ -25,6 +25,8 @@ var stageConfig = {
 	}]
 }
 
+window.result = stageConfig;
+
 var Board = React.createClass({
 	componentDidMount: function() {
 		var stage = uonejs.create(stageConfig);
