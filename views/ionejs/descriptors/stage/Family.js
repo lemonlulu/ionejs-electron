@@ -113,7 +113,7 @@ p.sync = function() {
 		x: (i%3>>0)*200 + 500,
 		y: (i/3>>0)*200 + 160,
 		name: 'new_tag',
-		texts: ['One', 'Painter', 'Writer'],
+		texts: ['One', 'Painter', 'Writer', 'painters.Animator'],
 		prefix: 'new '
 	});
 	child.init();
