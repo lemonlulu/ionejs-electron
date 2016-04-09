@@ -2,19 +2,23 @@ var ionejs = require('ionejs');
 var _ = require('underscore');
 
 var RotatingPainter = function(options) {
+	_.defaults(options, {
+		speed: 1
+	});
     ionejs.Painter.apply(this, arguments);
 }
 
 var p = ionejs.inherits(RotatingPainter, ionejs.Painter);
 
 p.update = function() {
+	var _S = this._state;
 	ionejs.Painter.prototype.update.apply(this);
-    this._state.rotation += 3;
-    this._state.rotation %= 360;
-    var image = this._state.image
+    _S.rotation += _S.speed;
+    _S.rotation %= 360;
+    var image = _S.image
     if (image) {
-	    this._state.regX = -image.width/2;
-	    this._state.regY = -image.height/2;
+	    _S.regX = -image.width/2;
+	    _S.regY = -image.height/2;
     }
 }
 
