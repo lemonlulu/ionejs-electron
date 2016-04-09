@@ -33,6 +33,8 @@ p.init = function() {
 	    		prefix: _S.prefix,
 	    		height: 20,
 			alpha: 1,
+			font: _S.font,
+			color: _S.color
 		}
 	});
 	var back = ionejs.create({
@@ -43,7 +45,9 @@ p.init = function() {
 			align: 'center',
 	    		text: _S.texts[1],
 	    		prefix: _S.prefix,
-			alpha: 0
+			alpha: 0,
+			font: _S.font,
+			color: _S.color
 		}
 	});
 	front.mode('hitable');
