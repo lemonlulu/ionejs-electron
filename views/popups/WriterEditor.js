@@ -61,10 +61,10 @@ var WriterEditor = React.createClass({
 			height:"100%"});
 		return (
 			<div style={padStyle} onClick={this.handleClick}>
-				<div style={{position:"absolute", fontSize:24, "font-weight":"bold", top:"3.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>name</div>
+				<div style={{position:"absolute", fontSize:24, fontWeight:"bold", top:"3.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>name</div>
 				<input type="text" name="name" value={state.options.name} onChange={this.handleChangeString} onClick={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"3.2%", left:"35%", width:"38.2%", textAlign:"left", border: "0px"}} ></input>
-				<div style={{position:"absolute", fontSize:24, "font-weight":"bold", top:"8.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>text</div>
+				<div style={{position:"absolute", fontSize:24, fontWeight:"bold", top:"8.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>text</div>
 				<input type="text" name="text" value={state.options.text} onChange={this.handleChangeString} onClick={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"8.2%", left:"35%", width:"38.2%", textAlign:"left", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"13.2%", left:"calc(28.2% - 50px)", width:"100px"}}>x</div>

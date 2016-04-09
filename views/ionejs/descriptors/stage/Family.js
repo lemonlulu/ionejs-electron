@@ -4,6 +4,7 @@ var inherits = ionejs.inherits;
 var blur = ionejs.blur;
 var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
+var FamilyPath = require('./FamilyPath');
 var FamilyChild = require('./FamilyChild');
 var FamilyNewChild = require('./FamilyNewChild');
 var Button = require('../../others/writers/Button');
@@ -84,13 +85,14 @@ p.close = function() {
 };
 
 p.sync = function() {
-	var path = new Writer({
+	var path = new FamilyPath({
 		x: 160,
 		y: 200,
 		name: 'path',
 		text: 'stage',
 		prefix: 'PATH    '
 	});
+	path.init();
 	this.addChild(path);
 	var children = this._state.children;
 	for (var i in children) {

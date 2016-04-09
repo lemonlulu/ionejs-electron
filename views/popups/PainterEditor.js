@@ -63,6 +63,9 @@ var PainterEditor = React.createClass({
 				<div style={{position:"absolute", fontSize:24, top:"8.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>src</div>
 				<input type="text" name="src" value={state.options.src} onChange={this.handleChangeString} onClick={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"8.2%", left:"28.2%", width:"38.2%", textAlign:"right", border: "0px"}} ></input>
+				<div style={{position:"absolute", fontSize:24, top:"13.2%", left:"calc(28.2% - 50px)", width:"38.2%"}}>name</div>
+                                <input type="text" name="name" value={state.options.name} onChange={this.handleChangeString} onClick={this.handleInputClick}
+                                        style={{position:"absolute", fontSize:24, top:"13.2%", left:"28.2%", width:"38.2%", textAlign:"left", border: "0px"}} ></input>
 				<div style={{position:"absolute", fontSize:24, top:"13.2%", left:"calc(61.8% - 100px)", width:"100px"}}>x</div>
 				<input type="text" name="x" value={state.options.x} onChange={this.handleChangeNumber} onClick={this.handleInputClick}
 					style={{position:"absolute", fontSize:24, top:"13.2%", left:"61.8%", width:"50px", textAlign:"right", border: "0px"}} ></input>
