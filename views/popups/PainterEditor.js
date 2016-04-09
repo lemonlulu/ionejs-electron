@@ -16,6 +16,11 @@ var PainterEditor = React.createClass({
 		Actions.on("Submit.ionejs.Painter.Edit", function() {
 	        	me.setState({value: ""});
 		});
+		Actions.on("ionejs.painters.RotatingPainter.Edit", function(options) {
+			me.setState({options: options});
+			me.setActive(true);
+		});
+
 
 	},
     	handleChangeNumber: function(event) {
