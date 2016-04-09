@@ -4,6 +4,7 @@ var descriptors = require("./descriptors");
 
 var parser = require('./parser');
 parser.setDescriptors(descriptors);
+parser.setOnes(others);
 parser.setOne('Stage', ionejs.Stage);
 parser.setOne('Painter', ionejs.Painter);
 parser.setOne('Writer', others['writers.HitableWriter']);
