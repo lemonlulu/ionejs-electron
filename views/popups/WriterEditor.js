@@ -13,6 +13,10 @@ var WriterEditor = React.createClass({
 			me.setState({options: options});
 			me.setActive(true);
 		});
+		Actions.on("ionejs.writers.SpinWriter.Edit", function(options) {
+			me.setState({options: options});
+			me.setActive(true);
+		});
 		Actions.on("Submit.ionejs.Writer.Edit", function() {
 	        	me.setState({value: ""});
 		});
