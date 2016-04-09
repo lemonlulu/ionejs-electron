@@ -71,7 +71,7 @@ p.update = function() {
 		_S.switching = true;
 	}
 	if (_S.switching) {
-		_S.angle += 3; 
+		_S.angle += 1.5; 
 		front._state.y = Math.sin(_S.angle * Math.PI/180);
 		front._state.alpha = 0.5 + 0.5 * Math.cos(_S.angle * Math.PI/180);
 		back._state.y = - Math.sin(_S.angle * Math.PI/180);
