@@ -18,6 +18,7 @@ var stageConfig = {
 	}, {
 		alias: "Writer",
 		options: {
+			name: "writer",
 			text: "Hello Ionejs",
 			color: "#FF1275"
 		},
