@@ -6,6 +6,7 @@ var Writer = ionejs.Writer;
 var Descriptor = require('../Descriptor');
 var FamilyChild = require('./FamilyChild');
 var FamilyNewChild = require('./FamilyNewChild');
+var Button = require('../../others/writers/Button');
 var _ = require('underscore');
 
 var Family = function(options) {
@@ -67,6 +68,9 @@ p.init = function() {
 		I.close();
 		Actions.emit("ionejs."+ e.data.alias +".Edit", config.options);
 	});
+	I.addEventListener('close', function() {
+		I.close();
+	});
 };
 
 p.open = function() {
@@ -113,6 +117,20 @@ p.sync = function() {
 	child.init();
 	child.mode('dropable');
 	this.addChild(child);
+	var stage = this.getSource();
+	var closeButton = new Button({
+		x: stage._state.width - 200,
+		y: stage._state.height - 160,
+		text: 'close',
+		in: {
+			font: "Bold 24px Arial"
+		},
+		out: {
+			font: "Bold 20px Arial"
+		}
+	});
+	closeButton.init();
+	this.addChild(closeButton);
 };
 
 p.update = function() {
