@@ -29,11 +29,9 @@ p.init = function() {
 		var config = e.dropSource._state.config;
 		var sourceName = config.options.name;
 		if (sourceName) {
-			I._state.text = I._state.text + '.' + sourceName;
 			I.dispatchEvent(new ionejs.Event({
 				type: "PathChange",
-				Config: config
-				
+				config: config
 			}))
 		}
 		

@@ -35,21 +35,21 @@ p.init = function() {
 		    	options: e.data.config.options
 		});
 		t = x;
-		x = demo._state.x;
-		demo._state.x = t;
-		t = y;
-		y = demo._state.y;
-		demo._state.y = t;
-		I.addChild(demo);
+        x = demo._state.x;
+        demo._state.x = t;
+        t = y;
+        y = demo._state.y;
+        demo._state.y = t;
+        I.addChild(demo);	
 	});
 	I.addEventListener('Unselect', function(e) {
 		t = demo._state.x;
-		demo._state.x = x;
-		x = t;
-		t = demo._state.y;
-		demo._state.y = y;
-		y = t;
-		I.removeChild(demo);
+        demo._state.x = x;
+        x = t;
+        t = demo._state.y;
+        demo._state.y = y;
+        y = t;
+        I.removeChild(demo);
 	});
 	I.addEventListener('OpenEditor', function(e) {
 		I.close();
@@ -58,17 +58,28 @@ p.init = function() {
 	I.addEventListener('NewOne', function(e) {
 		var config = {
 			alias: e.data.alias,
-			options: {},
+			options: {
+				name: 'a1'
+			},
 			children: []
 		}
 		var newOne = parser.parse(config);
 		newOne._init();
+		var path = I._state.currentPath;
 		var current = I.getSource();
-		current.insertChild(newOne, I._state.children.length);
-		I._state.children.push(config);
+		if (path.length > 6)
+			current = current.query(path.substr(6));
+		current.insertChild(newOne, I._state.currentChildren.length);
+		I._state.currentChildren.push(config);
 		I.close();
 		Actions.emit("ionejs."+ e.data.alias +".Edit", config.options);
 	});
+    I.addEventListener('PathChange', function(e) {
+    	I._state.currentPath = I._state.currentPath + '.' + e.data.config.options.name;
+    	I._state.currentChildren = e.data.config.children;
+    	I.removeAllChildren();
+    	I.sync();
+    });
 	I.addEventListener('close', function() {
 		I.close();
 	});
@@ -76,6 +87,8 @@ p.init = function() {
 
 p.open = function() {
 	this._state.beta = 1;
+	this._state.currentPath = 'stage';
+	this._state.currentChildren = this._state.children;
 	this.sync();
 };
 
@@ -89,12 +102,12 @@ p.sync = function() {
 		x: 160,
 		y: 200,
 		name: 'path',
-		text: 'stage',
+		text: this._state.currentPath,
 		prefix: 'PATH    '
 	});
 	path.init();
 	this.addChild(path);
-	var children = this._state.children;
+	var children = this._state.currentChildren;
 	for (var i in children) {
 		var alias = children[i].alias;
 		var options = children[i].options;
