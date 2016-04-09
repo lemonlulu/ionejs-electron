@@ -2,13 +2,21 @@ var ionejs = require('ionejs');
 var _ = require('underscore');
 
 var Animator = function(options) {
-    _.defaults(options, {
+   _.defaults(options, {
         f: 0,
         current: 0,
-        frame: 60,
+        frame: 6,
         srcs: [
-            'http://www.52ij.com/uploads/allimg/160317/1110104P8-4.jpg',
-            'http://banbao.chazidian.com/uploadfile/2016-01-25/s145368924044608.jpg'
+            'resources/spark/1.png',
+            'resources/spark/2.png',
+            'resources/spark/3.png',
+            'resources/spark/4.png',
+            'resources/spark/5.png',
+            'resources/spark/6.png',
+            'resources/spark/7.png',
+            'resources/spark/8.png',
+            'resources/spark/9.png',
+            'resources/spark/10.png',
         ]
     });
     ionejs.Painter.apply(this, arguments);
