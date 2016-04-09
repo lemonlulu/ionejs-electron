@@ -10,13 +10,11 @@ var FamilyChild = function(options) {
 		align: 'center',
 		height: 20,
 		in: {
-			height: 24,
 			font: "Bold 24px Arial"
 		},
 		out: {
-			height: 20,
 			font: "Bold 20px Arial"
-		},
+		}
 	});
 	DualWriter.apply(this, arguments);
 }
