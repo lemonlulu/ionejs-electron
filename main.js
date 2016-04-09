@@ -2,8 +2,11 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 
 var Board = require("./views/board");
-var Nav = require("./views/nav")
-var Popups = require("./views/popups")
+var Nav = require("./views/nav");
+var Popups = require("./views/popups");
+var PainterEditor = require("./views/popups/PainterEditor");
+var WriterEditor = require('./views/popups/WriterEditor');
+ 
 
 //Actions
 Actions = require("./views/react/action").actions;
@@ -26,8 +29,8 @@ var App = React.createClass({
 
 ReactDOM.render(
 		<App>
-		<Popups />
-		<Nav left="280px" top="0px"/>
+		<PainterEditor />
+		<WriterEditor />
 		<Board left="0px" top="0px" controller={Controllers.board}/>
 		</App>,
 		document.getElementById("app")
