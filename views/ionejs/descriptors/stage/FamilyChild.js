@@ -50,7 +50,7 @@ p.sync = function() {
 	var name = _S.config.options.name;
 	_S.name = name + '_tag';
 	_S.text = name ? '-'+name : '-anonymity';
-	_S.prefix = _S.config.alias;
+	_S.prefix = _S.config.alias.split(".").pop();
 }
 
 p.update = function() {
