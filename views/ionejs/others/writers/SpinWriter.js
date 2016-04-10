@@ -15,7 +15,7 @@ p.init = function() {
 	var _S = this._state;
 	_S.angle = 0;
 	_S.switching = false;
-	_S.turned = true;
+	_S.turned = false;
 	_S.current = 0;
 	me.addEventListener('mouseout', function(e) {
 		_S.turned = false;
