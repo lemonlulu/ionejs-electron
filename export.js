@@ -262,3 +262,5 @@ var stage = ionejs.create(stageConfig);
 ionejs.instance.init(stage, document.getElementById('canvas'));
 ionejs.instance.run();
 ionejs.instance._debug = false;
+ionejs.instance.dropable();
+ionejs.instance.moveable();

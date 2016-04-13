@@ -6,6 +6,8 @@ var parser = require('./parser');
 parser.setDescriptors(descriptors);
 parser.setOnes(others);
 parser.setOne('Stage', ionejs.Stage);
+parser.setOne('Cliper', ionejs.Cliper);
+parser.setOne('Phantom', ionejs.Phantom);
 parser.setOne('Painter', ionejs.Painter);
 parser.setOne('Writer', others['writers.HitableWriter']);
 
