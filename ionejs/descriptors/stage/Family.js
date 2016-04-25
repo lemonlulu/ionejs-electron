@@ -7,7 +7,7 @@ var Descriptor = require('../Descriptor');
 var FamilyPath = require('./FamilyPath');
 var FamilyChild = require('./FamilyChild');
 var FamilyNewChild = require('./FamilyNewChild');
-var Button = require('../../others/writers/Button');
+var Button = require('uonejs')['writers.Button'];
 var _ = require('underscore');
 
 var Family = function(options) {

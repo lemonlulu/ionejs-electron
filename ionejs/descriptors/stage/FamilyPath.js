@@ -1,7 +1,7 @@
 var ionejs = require('ionejs');
 var inherits = ionejs.inherits;
 var defaults = require('underscore').defaults;
-var DualWriter = require('../../others/writers/DualWriter');
+var DualWriter = require('uonejs')['writers.DualWriter'];
 
 var FamilyPath = function(options) {
 	defaults(options, {

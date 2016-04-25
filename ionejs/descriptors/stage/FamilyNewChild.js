@@ -1,7 +1,7 @@
 var ionejs = require('ionejs');
 var _ = require('underscore');
 var inherits = ionejs.inherits;
-var SpinWriter = require('../../others/writers/SpinWriter');
+var SpinWriter = require('uonejs')['writers.SpinWriter'];
 
 var FamilyNewChild = function(options) {
 	SpinWriter.apply(this, arguments);
