@@ -11,14 +11,11 @@ all: $(APPJS)
 .PHONY: all
 
 $(APPJS): $(SRCJS) $(MOD)
-	$(BROWSERIFY) -t [ babelify --presets [ react ] ] $(SRCJS) -o $(APPJS)
+	$(BROWSERIFY) $(SRCJS) -o $(APPJS)
 .PHONY: $(APPJS)
 
 $(MOD): package.json
 	npm install
-
-export: $(EXPORTSJS)
-	$(BROWSERIFY) -t [ babelify --presets [ react ] ] export.js -o export1.js
 
 clean:
 	rm -rf $(APPJS)
