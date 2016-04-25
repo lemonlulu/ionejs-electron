@@ -1,4 +1,5 @@
 app.js
 export1.js
 resources
-node_modules
+node_modules/ionejs
+node_modules/underscore
